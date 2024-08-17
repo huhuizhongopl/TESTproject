@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <button onclick="clickFn()">点击</button> -->
+</body>
+<script src="../js/Promise.js"></script>
+<script>
+    const p = new myPromise((resolve, reject) => {
+        setTimeout(() => {
+            reject('111')
+        }, 1000)
+    })
+
+    const res = p.then(val => {
+        console.log('val', val);
+    }, reason => {
+        console.log('reason', reason);
+    })
+    console.log('res', res);
+
+</script>
+
+</html>

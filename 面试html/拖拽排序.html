@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .list {
+        width: 500px;
+        height: 300px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .item {
+        width: 500px;
+        height: 50px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: green;
+        text-align: center;
+        line-height: 50px;
+    }
+
+    .moving {
+        width: 500px;
+        height: 50px;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        border: 1px dashed;
+        text-align: center;
+        line-height: 50px;
+    }
+</style>
+
+<body>
+    <div class="list">
+        <div draggable="true" class="item">1</div>
+        <div draggable="true" class="item">2</div>
+        <div draggable="true" class="item">3</div>
+        <div draggable="true" class="item">4</div>
+        <div draggable="true" class="item">5</div>
+    </div>
+</body>
+<script>
+    let list = document.getElementsByClassName("list")[0]
+    let sourceNode
+    list.ondragstart = e => {
+        setTimeout(() => {
+            e.target.classList.add("moving")
+        }, 0)
+        sourceNode = e.target
+    }
+    list.ondragover = e => {
+        e.preventDefault()
+    }
+    list.ondragenter = (e) => {
+        e.preventDefault()
+        if (e.target === list || e.target === sourceNode) {
+            return
+        }
+        const children = [...list.children]
+        const sourceIndex = children.indexOf(sourceNode)
+        const targetIndex = children.indexOf(e.target)
+        if (sourceIndex > targetIndex) {
+            list.insertBefore(sourceNode, e.target)
+        } else {
+            list.insertBefore(sourceNode, e.target.nextSibling)
+        }
+        //sourceNode.classList.remove("moving")
+    }
+</script>
+
+</html>

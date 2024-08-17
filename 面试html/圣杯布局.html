@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圣杯布局</title>
+    <style type="text/css">
+        body {
+            min-width: 550px;
+        }
+
+        #header {
+            background-color: #999999;
+        }
+
+        #middle {
+            /* 2.把中间部分留出左右元素的宽度 */
+            padding-left: 200px;
+            padding-right: 150px;
+        }
+
+        #middle .column {
+            float: left;
+            height: 200px;
+        }
+
+        #left {
+            width: 200px;
+            background-color: #FFFF00;
+            /* 4. 向左移动center的宽度 */
+            margin-left: -100%;
+            /* 5. 再向左移动自身宽度，露出被覆盖的center块 */
+            position: relative;
+            right: 200px;
+        }
+
+        #center {
+            width: 100%;
+            background-color: pink;
+        }
+
+        #right {
+            /* 3.margin-right让右方元素覆盖自身，达到消除自身宽度的目的，浮动到center上面去 */
+            margin-right: -150px;
+            width: 150px;
+            background-color: #CCCCCC;
+        }
+
+        #footer {
+            background-color: #999999;
+        }
+
+        .clearfix:after {
+            display: table;
+            content: '';
+            clear: both;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">header</div>
+    <div id="middle" class="clearfix">
+        <div id="center" class="column">
+            center
+        </div>
+        <div id="left" class="column">
+            left
+        </div>
+        <div id="right" class="column">
+            right
+        </div>
+    </div>
+    <div id="footer">footer</div>
+</body>
+
+</html>

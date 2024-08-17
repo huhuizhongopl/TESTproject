@@ -1,0 +1,6 @@
+.hu {
+    width: 500px;
+    height: 200px;
+    display: flex;
+    background-image: url("./static/th.png");
+}

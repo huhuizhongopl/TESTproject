@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="wrap" style="height: 2000px;overflow-y: auto; background-color: green;">
+        <div id="my-element" style="height: 200px;background-color: red;"></div>
+
+    </div>
+</body>
+<script>
+    function callback(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                console.log('Element is in viewport');
+            } else {
+                console.log('Element is not in viewport');
+            }
+        });
+    }
+    const observer = new IntersectionObserver(callback);
+    const element = document.getElementById('my-element');
+    observer.observe(element);
+
+
+</script>
+
+</html>

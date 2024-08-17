@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrap {
+            height: 500px;
+            width: 100%;
+            background-color: green;
+        }
+
+        .item {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            opacity: 0.5;
+            border: 1px #000 dashed;
+            float: left;
+        }
+
+        .normal {
+            width: auto;
+            height: 50px;
+            background-color: blue;
+        }
+
+        .circle {
+            width: 500px;
+            height: 500px;
+            background: red;
+            /* 上半圆环 */
+            clip-path: polygon(0 100%,25% 50%,75% 50%,100% 100%);
+            /* 下半圆环 */
+            /* clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%); */
+            /* 左半圆环 */
+            /* clip-path: polygon(50% 0, 100% 0, 100% 3600%, 50% 50%); */
+            /* 左半圆环 */
+            /* clip-path: polygon(50% 100%, 0 100%, 0 -3600%, 50% 50%); */
+        }
+    </style>
+</head>
+
+<body style="background: blue;">
+    <!-- <div class="wrap" onclick="print()">
+        <div class="item" >1</div>
+        <div class="item">2</div>
+        <div class="item">3</div>
+        <div class="item">4</div>
+        <div class="item">5</div>
+        <div class="item">6</div>
+        <div class="item">7</div>
+        <div class="item">8</div>
+        <div class="item">9</div>
+        <div class="item">10</div>
+        <div class="normal"></div>
+    </div> -->
+    <div class="circle"></div>
+</body>
+<script></script>
+
+</html>

@@ -4,7 +4,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");//编译html
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");//单独抽取css代码
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin")//压缩css代码
 const TerserWebpackPlugin = require("terser-webpack-plugin")//压缩处理js代码
-const path = require("path")
+const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin")
+const path = require("path");
 const threads = os.cpus().length// 获取cpu核数
 module.exports = {
     //入口
@@ -87,19 +88,76 @@ module.exports = {
         new MiniCssExtractPlugin({//单独抽离css文件
             filename: "static/css/main.css"
         }),
-        // new CssMinimizerWebpackPlugin(),//压缩css代码调用
-        // new TerserWebpackPlugin({
-        //     parallel: threads// 开启多线程与设置线程数量
+        new CssMinimizerWebpackPlugin(),//压缩css代码调用
+        new TerserWebpackPlugin({
+            parallel: threads// 开启多线程与设置线程数量
+        }),
+        // new ImageMinimizerPlugin({//压缩图片
+        //     minimizer: {
+        //         implementation: ImageMinimizerPlugin.imageminGenerate,
+        //         options: {
+        //             plugins: [
+        //                 //['gifsicle', { interlaced: true }],
+        //                 //['jpegtran', { progressive: true }],
+        //                 //['optipng', { optimizationLevel: 5 }],
+        //                 // [
+        //                 //     'svgo',
+        //                 //     {
+        //                 //         plugins: [
+        //                 //             "preset-default",
+        //                 //             'prefixIds',
+        //                 //             {
+        //                 //                 name: 'sortAttrs',
+        //                 //                 params: {
+        //                 //                     xmlnsOrder: "alphabetical",
+        //                 //                 }
+        //                 //             }
+        //                 //         ]
+        //                 //     }
+        //                 // ]
+        //             ]
+        //         }
+        //     }
         // })
     ],
-    optimiratiom: {
-        //压缩的操作，放这儿也行，放上面plugins里也行
-        minimizer: [
-            new CssMinimizerWebpackPlugin(),//压缩css代码调用
-            new TerserWebpackPlugin({
-                parallel: threads// 开启多线程与设置线程数量
-            })]
-    },
+    // optimizatiom: {
+    //     //压缩的操作，放这儿也行，放上面plugins里也行
+    //     minimizer: [
+    //         new CssMinimizerWebpackPlugin(),//压缩css代码调用
+    //         new TerserWebpackPlugin({
+    //             parallel: threads// 开启多线程与设置线程数量
+    //         }),
+    //         //压缩图片
+    //         // new ImageMinimizerPlugin({
+    //         //     minimizer: {
+    //         //         implementation: ImageMinimizerPlugin.imageminGenerate,
+    //         //         options: {
+    //         //             plugins: [
+    //         //                 ['gifsicle', { interlaced: true }],
+    //         //                 ['jpegtran', { progressive: true }],
+    //         //                 //['optipng', { optimizationLevel: 5 }],
+    //         //                 [
+    //         //                     'svgo',
+    //         //                     {
+    //         //                         plugins: [
+    //         //                             "preset-default",
+    //         //                             'prefixIds',
+    //         //                             {
+    //         //                                 name: 'sortAttrs',
+    //         //                                 params: {
+    //         //                                     xmlnsOrder: "alphabetical",
+    //         //                                 }
+    //         //                             }
+    //         //                         ]
+    //         //                     }
+    //         //                 ]
+    //         //             ]
+    //         //         }
+    //         //     }
+    //         // })
+    //     ],
+
+    // },
     mode: 'production',
     devtool: "source-map"
 }

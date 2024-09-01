@@ -1,3 +1,4 @@
 node_modules
 dist
 npminstall-debug.log
+coverage
